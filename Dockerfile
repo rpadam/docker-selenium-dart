@@ -19,8 +19,6 @@ RUN apt-get update && apt-get install -y \
     curl \
     imagemagick \
     ffmpeg \
-    xvfb \
-    openjdk-8-jre-headless \
   && apt-get clean
 
 RUN wget -O ./sauce-connect.tar.gz https://saucelabs.com/downloads/sc-$SC_VERSION-linux.tar.gz \
