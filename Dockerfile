@@ -40,7 +40,8 @@ RUN wget $ARCHIVE_URL/sdk/dartsdk-linux-x64-release.zip \
   && cp dart-sdk/* /usr/local -r \
   && rm -rf dartsdk-linux-x64-release.zip
 
-RUN git clone git@github.com:vslavik/diff-pdf.git \
+RUN ssh-keyscan -H github.com >> ~/.ssh/known_hosts \
+  && git clone git@github.com:vslavik/diff-pdf.git \
   && cd diff-pdf/ \
   && bootstrap \
   && configure \
