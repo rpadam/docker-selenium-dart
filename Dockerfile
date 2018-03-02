@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     curl \
     imagemagick \
+    libmagick++-dev \
     ffmpeg \
     xvfb \
     openjdk-8-jre-headless \
