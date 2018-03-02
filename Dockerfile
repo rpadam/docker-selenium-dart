@@ -40,8 +40,15 @@ RUN wget $ARCHIVE_URL/sdk/dartsdk-linux-x64-release.zip \
   && cp dart-sdk/* /usr/local -r \
   && rm -rf dartsdk-linux-x64-release.zip
 
-RUN ssh-keyscan -H github.com >> ~/.ssh/known_hosts \
-  && git clone git@github.com:vslavik/diff-pdf.git \
+# Copy over private key, and set permissions
+ADD id_rsa /root/.ssh/id_rsa
+
+# Create known_hosts
+RUN touch /root/.ssh/known_hosts
+# Add githubs key
+RUN ssh-keyscan -H github.com >> /root/.ssh/known_hosts
+
+RUN git clone git@github.com:vslavik/diff-pdf.git \
   && cd diff-pdf/ \
   && bootstrap \
   && configure \
