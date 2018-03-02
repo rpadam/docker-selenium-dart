@@ -46,7 +46,7 @@ RUN mkdir /root/.ssh \
   && ssh-keyscan -H "github.com" >> /root/.ssh/known_hosts \
   && chmod 600 /root/.ssh/known_hosts
 
-RUN git clone git@github.com:vslavik/diff-pdf.git \
+RUN git clone https://github.com/vslavik/diff-pdf.git \
   && cd diff-pdf/ \
   && bootstrap \
   && configure \
