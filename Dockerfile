@@ -41,14 +41,14 @@ RUN wget $ARCHIVE_URL/sdk/dartsdk-linux-x64-release.zip \
   && rm -rf dartsdk-linux-x64-release.zip
 
 # Add github RSA fingerprint
-RUN mkdir /root/.ssh \
-  && touch /root/.ssh/known_hosts \
-  && ssh-keyscan -H "github.com" >> /root/.ssh/known_hosts \
-  && chmod 600 /root/.ssh/known_hosts
+# RUN mkdir /root/.ssh \
+#  && touch /root/.ssh/known_hosts \
+#  && ssh-keyscan -H "github.com" >> /root/.ssh/known_hosts \
+#  && chmod 600 /root/.ssh/known_hosts
 
 RUN git clone https://github.com/vslavik/diff-pdf.git \
   && cd diff-pdf/ \
-  && bootstrap \
-  && configure \
+  && ./bootstrap \
+  && ./configure \
   && make \
   && make install
