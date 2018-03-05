@@ -18,9 +18,16 @@ RUN apt-get update && apt-get install -y \
     wget \
     curl \
     imagemagick \
+    libmagick++-dev \
     ffmpeg \
     xvfb \
     openjdk-8-jre-headless \
+    make \
+    automake \
+    g++ \
+    libpoppler-glib-dev \
+    poppler-utils \
+    wxgtk3.0-dev \
   && apt-get clean
 
 RUN wget -O ./sauce-connect.tar.gz https://saucelabs.com/downloads/sc-$SC_VERSION-linux.tar.gz \
@@ -33,3 +40,10 @@ RUN wget $ARCHIVE_URL/sdk/dartsdk-linux-x64-release.zip \
   && unzip dartsdk-linux-x64-release.zip \
   && cp dart-sdk/* /usr/local -r \
   && rm -rf dartsdk-linux-x64-release.zip
+
+RUN git clone https://github.com/vslavik/diff-pdf.git \
+  && cd diff-pdf/ \
+  && ./bootstrap \
+  && ./configure \
+  && make \
+  && make install
