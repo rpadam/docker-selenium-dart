@@ -22,6 +22,7 @@ RUN sudo apt-get update && sudo apt-get install -y \
     curl \
     imagemagick \
     libmagick++-dev \
+    ffmpeg \
     xvfb \
     openjdk-8-jre-headless \
     make \
@@ -56,8 +57,3 @@ RUN wget -O /node.zip https://nodejs.org/dist/v8.2.1/node-v8.2.1-linux-x64.tar.x
   && tar -C /usr/local --strip-components 1 -xJf /node.zip \
   && npm config set unsafe-perm=true \
   && npm install -g puppeteer
-
-RUN add-apt-repository -y ppa:mc3man/trusty-media \
-  && sudo apt-get update -y \
-  && sudo apt-get install -y ffmpeg \
-  && apt-get clean
