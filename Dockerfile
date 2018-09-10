@@ -12,6 +12,7 @@ ENV SDK_VERSION latest
 ENV ARCHIVE_URL https://storage.googleapis.com/dart-archive/channels/$CHANNEL/release/$SDK_VERSION
 ENV SC_VERSION 4.4.6
 ENV PATH $PATH:/usr/lib/dart/bin
+ENV export NODE_PATH=/usr/local/lib/node_modules
 
 RUN apt-get update && apt-get install -y \
     git \
@@ -30,6 +31,8 @@ RUN apt-get update && apt-get install -y \
     libpoppler-glib-dev \
     poppler-utils \
     wxgtk3.0-dev \
+    software-properties-common \
+    xz-utils \
   && apt-get clean
 
 RUN wget -O ./sauce-connect.tar.gz https://saucelabs.com/downloads/sc-$SC_VERSION-linux.tar.gz \
@@ -49,3 +52,14 @@ RUN git clone https://github.com/vslavik/diff-pdf.git \
   && ./configure \
   && make \
   && make install
+
+RUN wget -O /node.zip https://nodejs.org/dist/v8.2.1/node-v8.2.1-linux-x64.tar.xz \
+  && tar -C /usr/local --strip-components 1 -xJf /node.zip \
+  && npm config set unsafe-perm=true \
+  && npm install -g puppeteer
+
+# RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+# RUN sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+# RUN sudo sudo apt-get update
+# RUN sudo apt-get install -y google-chrome-stable
+# RUN sed -i --follow-symlinks -e 's/\"\$HERE\/chrome\"/\"\$HERE\/chrome\" --remote-debugging-port=9222 --no-sandbox/g' /usr/bin/google-chrome-stable
