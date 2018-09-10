@@ -14,7 +14,6 @@ ENV SC_VERSION 4.4.6
 ENV PATH $PATH:/usr/lib/dart/bin
 ENV export NODE_PATH=/usr/local/lib/node_modules
 
-RUN add-apt-repository -y ppa:mc3man/trusty-media
 RUN sudo apt-get update && sudo apt-get install -y \
     git \
     ssh \
