@@ -14,7 +14,7 @@ ENV SC_VERSION 4.4.6
 ENV PATH $PATH:/usr/lib/dart/bin
 ENV export NODE_PATH=/usr/local/lib/node_modules
 
-RUN apt-get update && apt-get install -y \
+RUN sudo apt-get update && sudo apt-get install -y \
     git \
     ssh \
     unzip \
@@ -22,7 +22,6 @@ RUN apt-get update && apt-get install -y \
     curl \
     imagemagick \
     libmagick++-dev \
-    ffmpeg \
     xvfb \
     openjdk-8-jre-headless \
     make \
@@ -58,8 +57,7 @@ RUN wget -O /node.zip https://nodejs.org/dist/v8.2.1/node-v8.2.1-linux-x64.tar.x
   && npm config set unsafe-perm=true \
   && npm install -g puppeteer
 
-# RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-# RUN sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-# RUN sudo sudo apt-get update
-# RUN sudo apt-get install -y google-chrome-stable
-# RUN sed -i --follow-symlinks -e 's/\"\$HERE\/chrome\"/\"\$HERE\/chrome\" --remote-debugging-port=9222 --no-sandbox/g' /usr/bin/google-chrome-stable
+RUN add-apt-repository -y ppa:mc3man/trusty-media \
+  && sudo apt-get update -y \
+  && sudo apt-get install -y ffmpeg \
+  && apt-get clean
