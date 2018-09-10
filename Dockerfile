@@ -57,3 +57,5 @@ RUN wget -O /node.zip https://nodejs.org/dist/v8.2.1/node-v8.2.1-linux-x64.tar.x
   && tar -C /usr/local --strip-components 1 -xJf /node.zip \
   && npm config set unsafe-perm=true \
   && npm install -g puppeteer
+
+RUN sed -i --follow-symlinks -e 's/\"\$HERE\/chrome\"/\"\$HERE\/chrome\" --remote-debugging-port=9222 --no-sandbox/g' /usr/bin/google-chrome-stable
