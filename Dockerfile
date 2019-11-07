@@ -8,7 +8,7 @@ LABEL Description="This image contains: Selenium-HQ with Chrome; the Dart SDK; a
 USER root
 
 ENV CHANNEL stable
-ENV SDK_VERSION='2.2.0'
+ENV SDK_VERSION latest
 ENV ARCHIVE_URL https://storage.googleapis.com/dart-archive/channels/$CHANNEL/release/$SDK_VERSION
 ENV SC_VERSION 4.4.6
 ENV PATH $PATH:/usr/lib/dart/bin
