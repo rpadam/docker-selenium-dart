@@ -5,6 +5,8 @@ MAINTAINER Raphael Adam <raphael.adam@workiva.com, raphael912003@gmail.com>
 
 LABEL Description="This image contains: Selenium-HQ with Chrome; the Dart SDK; and Sauce Connect"
 
+USER root
+
 ENV CHANNEL stable
 ENV SDK_VERSION latest
 ENV ARCHIVE_URL https://storage.googleapis.com/dart-archive/channels/$CHANNEL/release/$SDK_VERSION
