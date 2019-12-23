@@ -1,5 +1,5 @@
 
-FROM selenium/standalone-chrome-debug:3.11.0
+FROM selenium/standalone-chrome-debug:3.141.59
 
 MAINTAINER Raphael Adam <raphael.adam@workiva.com, raphael912003@gmail.com>
 
